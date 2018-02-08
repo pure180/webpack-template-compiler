@@ -1,0 +1,2 @@
+
+// Entry for Javascript files

@@ -1,0 +1,2 @@
+
+// Entry for TypeScript files
