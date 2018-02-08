@@ -1,5 +1,5 @@
 # Webpack Template Compiler
-This is a template compiler using webpach to generate and create html templates including SASS, TypeScript and more.
+This is a template compiler using Webpack to generate and create HTML-Templates including SASS, TypeScript and more.
 
 ## Instructions
 Will add exact instructions soon. 
