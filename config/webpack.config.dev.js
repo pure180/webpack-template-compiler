@@ -1,12 +1,15 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
 'use strict';
 
-const webpack                           = require('webpack'),
-      path                              = require('path'),
-      paths                             = require('./paths'),
-      autoprefixer                      = require('autoprefixer'),
-      ExtractTextPlugin                 = require('extract-text-webpack-plugin'),
-      ModuleScopePlugin                 = require('react-dev-utils/ModuleScopePlugin'),
-      SuppressChunksPlugin              = require('suppress-chunks-webpack-plugin').default,
+const webpack = require('webpack'),
+      path = require('path'),
+      paths = require('./paths'),
+      autoprefixer = require('autoprefixer'),
+      ExtractTextPlugin = require('extract-text-webpack-plugin'),
+      ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin'),
+      SuppressChunksPlugin = require('suppress-chunks-webpack-plugin').default,
       {
         assignPugTemplates,
         excludeChunksArray,
@@ -15,38 +18,35 @@ const webpack                           = require('webpack'),
         resolveEntries,
         resolvePath,
         suppressChunks,
-      }                                 = require('../lib/utils/index'),
-      getClientEnvironment              = require('./env'),
-      ManifestPlugin                    = require('webpack-manifest-plugin'),
-      HtmlWebpackPlugin                 = require('html-webpack-plugin'),
-      HtmlWebpackExcludeAssetsPlugin    = require('html-webpack-exclude-assets-plugin'),
-      CaseSensitivePathsPlugin          = require('case-sensitive-paths-webpack-plugin'),
-      WatchMissingNodeModulesPlugin     = require('react-dev-utils/WatchMissingNodeModulesPlugin'),
-      CopyWebpackPlugin                 = require('copy-webpack-plugin'),
-      WriteFilePlugin                   = require('write-file-webpack-plugin'),
-      InterpolateHtmlPlugin             = require('react-dev-utils/InterpolateHtmlPlugin');
+      } = require('../lib/utils/index'),
+      getClientEnvironment = require('./env'),
+      ManifestPlugin = require('webpack-manifest-plugin'),
+      HtmlWebpackPlugin = require('html-webpack-plugin'),
+      HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin'),
+      CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin'),
+      WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin'),
+      CopyWebpackPlugin = require('copy-webpack-plugin'),
+      WriteFilePlugin = require('write-file-webpack-plugin'),
+      InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 
-const publicPath                        = paths.servedPath;
-const shouldUseRelativeAssetPaths       = publicPath === './';
-const shouldUseSourceMap                = process.env.GENERATE_SOURCEMAP !== 'false';
-const publicUrl                         = publicPath.slice(0, -1);
-const env                               = getClientEnvironment(publicUrl);
+const publicPath = paths.servedPath;
+const shouldUseRelativeAssetPaths = publicPath === './';
+const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+const publicUrl = publicPath.slice(0, -1);
+const env = getClientEnvironment(publicUrl);
 
-const extractTextPluginOptions          = shouldUseRelativeAssetPaths
-  ? // Making sure that the publicPath goes back to to build folder.
-    { publicPath: Array(cssFilename.split('/').length).join('../') }
-  : {};
+// const extractTextPluginOptions = shouldUseRelativeAssetPaths ? { publicPath: Array(cssFilename.split('/').length).join('../') }: {};
 
-const extractPug                        = new ExtractTextPlugin(normalizeFileName('pug', 'html'));
-const extractScss                       = new ExtractTextPlugin(normalizeFileName('scss', 'css', 'css/'));
+const extractPug = new ExtractTextPlugin(normalizeFileName('pug', 'html'));
+const extractScss = new ExtractTextPlugin(normalizeFileName('scss', 'css', 'css/'));
 
-const entries                           = resolveEntries('src/app');
+const entries = resolveEntries('src/app');
 
-const excludedJsChunks                  = excludeChunksArray(entries.files)
-const htmlWebpackPluginArray            = assignPugTemplates(entries.globs, {pretty: true});
+const excludedJsChunks = excludeChunksArray(entries.files);
+const htmlWebpackPluginArray = assignPugTemplates(entries.globs, {pretty: true});
 
-const devEntries = []
-Object.keys(entries.files).forEach(key => devEntries.push(entries.files[key][0]))
+const devEntries = [];
+Object.keys(entries.files).forEach(key => devEntries.push(entries.files[key][0]));
 
 const copyWebpackPluginIncludeExp = /\.(bmp|gif|jpe?g|png)$/;
 
@@ -242,6 +242,6 @@ const config = {
   performance: {
     hints: false,
   },
-}
+};
 
 module.exports = config;

@@ -1,3 +1,6 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
 'use strict';
 
 const path = require('path');
@@ -42,4 +45,4 @@ module.exports = {
   dotenv:                   resolveApp('.env'),
   publicUrl:                getPublicUrl(resolveApp('package.json')),
   servedPath:               getServedPath(resolveApp('package.json')),
-}
+};

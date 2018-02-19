@@ -1,13 +1,16 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
 'use strict';
 
-const webpack                           = require('webpack'),
-      path                              = require('path'),
-      paths                             = require('./paths'),
-      autoprefixer                      = require('autoprefixer'),
-      ExtractTextPlugin                 = require('extract-text-webpack-plugin'),
-      ModuleScopePlugin                 = require('react-dev-utils/ModuleScopePlugin'),
-      InterpolateHtmlPlugin             = require('react-dev-utils/InterpolateHtmlPlugin'),
-      SuppressChunksPlugin              = require('suppress-chunks-webpack-plugin').default,
+const webpack = require('webpack'),
+      path = require('path'),
+      paths = require('./paths'),
+      autoprefixer = require('autoprefixer'),
+      ExtractTextPlugin = require('extract-text-webpack-plugin'),
+      ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin'),
+      InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin'),
+      SuppressChunksPlugin = require('suppress-chunks-webpack-plugin').default,
       {
         assignPugTemplates,
         excludeChunksArray,
@@ -16,28 +19,25 @@ const webpack                           = require('webpack'),
         resolveEntries,
         resolvePath,
         suppressChunks,
-      }                                 = require('../lib/utils/index'),
-      getClientEnvironment              = require('./env'),
-      ManifestPlugin                    = require('webpack-manifest-plugin'),
-      HtmlWebpackExcludeAssetsPlugin    = require('html-webpack-exclude-assets-plugin'),
-      CopyWebpackPlugin                 = require('copy-webpack-plugin');
+      } = require('../lib/utils/index'),
+      getClientEnvironment = require('./env'),
+      ManifestPlugin = require('webpack-manifest-plugin'),
+      HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin'),
+      CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const publicPath                        = paths.servedPath;
-const shouldUseRelativeAssetPaths       = publicPath === './';
-const shouldUseSourceMap                = process.env.GENERATE_SOURCEMAP !== 'false';
-const publicUrl                         = publicPath.slice(0, -1);
-const env                               = getClientEnvironment(publicUrl);
+const publicPath = paths.servedPath;
+const shouldUseRelativeAssetPaths = publicPath === './';
+const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+const publicUrl = publicPath.slice(0, -1);
+const env = getClientEnvironment(publicUrl);
 
-const extractTextPluginOptions          = shouldUseRelativeAssetPaths
-  ? // Making sure that the publicPath goes back to to build folder.
-    { publicPath: Array(cssFilename.split('/').length).join('../') }
-  : {};
 
-const extractPug                        = new ExtractTextPlugin(normalizeFileName('pug', 'html'));
-const extractScss                       = new ExtractTextPlugin(normalizeFileName('scss', 'css', 'css/'));
-const entries                           = resolveEntries('src/app');
-const excludedJsChunks                  = excludeChunksArray(entries.files)
-const htmlWebpackPluginArray            = assignPugTemplates(entries.globs);
+const extractPug = new ExtractTextPlugin(normalizeFileName('pug', 'html'));
+const extractScss = new ExtractTextPlugin(normalizeFileName('scss', 'css', 'css/'));
+
+const entries = resolveEntries('src/app');
+const excludedJsChunks = excludeChunksArray(entries.files);
+const htmlWebpackPluginArray = assignPugTemplates(entries.globs);
 
 const config = {
   stats: {
@@ -156,7 +156,7 @@ const config = {
                 sourceMap: shouldUseSourceMap,
               },
             }],
-          }, extractTextPluginOptions)
+          })
         ),
       }, {
         loader: require.resolve('file-loader'),
@@ -196,7 +196,7 @@ const config = {
       fileName: 'asset-manifest.json',
       filter: (file) => {
         const expression = /(^(pug|jade)|\.html|^(scss|less).*\.js)/;
-        if (expression.test(file.name)) { return; }
+        if (expression.test(file.name)) { return null; }
         return file;
       },
       map: (file) => {
@@ -209,6 +209,6 @@ const config = {
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ]
-}
+};
 
 module.exports = config;

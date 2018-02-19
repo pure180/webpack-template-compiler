@@ -1,3 +1,6 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
 'use strict';
 
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
