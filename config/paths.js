@@ -42,6 +42,7 @@ module.exports = {
   appNodeModules:           resolveApp('node_modules'),
   appPackageJson:           resolveApp('package.json'),
   appPublic:                resolveApp('public'),
+  appPugData:               resolveApp('public/data'),
   dotenv:                   resolveApp('.env'),
   publicUrl:                getPublicUrl(resolveApp('package.json')),
   servedPath:               getServedPath(resolveApp('package.json')),
