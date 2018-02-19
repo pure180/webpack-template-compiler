@@ -191,6 +191,9 @@ const config = {
     new CopyWebpackPlugin([{
       from: paths.appPublic,
       to: paths.appDist,
+      ignore: [     
+        '*.json',
+      ],
     }]),
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
