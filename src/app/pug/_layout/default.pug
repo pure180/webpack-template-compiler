@@ -1,15 +1,20 @@
 doctype html
 
 block variables
+  - var options = locals.htmlWebpackPlugin.options
+  - var datas   = options.getData()
+  - var locals  = datas.locals
+  - var pages   = datas.pages
+  - var config  = datas.config
 
 block cutsomVariables
 
-html(lang='en')
+html(lang=locals.lang)
 
   head
     block head
       block meta
-
+      
   body
     block body
       header
