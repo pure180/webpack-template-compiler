@@ -1,3 +1,6 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
 'use strict';
 
 process.env.BABEL_ENV = 'development';
@@ -7,8 +10,8 @@ require('../config/env');
 
 const fs = require('fs');
 const chalk = require('chalk');
-const webpack = require('webpack')
-const appCompiler        = require('./compiler');
+const webpack = require('webpack');
+const appCompiler = require('./compiler');
 const WebpackDevServer = require('webpack-dev-server');
 const clearConsole = require('react-dev-utils/clearConsole');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
@@ -70,7 +73,7 @@ module.exports = () => {
           clearConsole();
         }
         console.log(chalk.cyan('Starting the development server...\n'));
-        openBrowser(urls.localUrlForBrowser);
+        return openBrowser(urls.localUrlForBrowser);
       });
 
       ['SIGINT', 'SIGTERM'].forEach(function(sig) {
