@@ -4,7 +4,6 @@
 'use strict';
 
 const buildProduction = require('./scripts/build'),
-      nodemon = require('nodemon'),
       startServer = require('./scripts/start.js');
 
 
