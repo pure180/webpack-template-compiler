@@ -115,7 +115,12 @@ const config = {
       }, {
         test: /\.pug$/,
         exclude: globals.execludeNoneTextExtensions,
-        loader: require.resolve('pug-loader')
+        use: [{
+          loader: require.resolve('pug-loader'),
+          query: {
+            pretty: false,
+          }
+        }]
       }, {
         test: /\.scss$/,
         exclude: globals.execludeNoneTextExtensions,
