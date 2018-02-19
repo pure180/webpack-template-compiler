@@ -133,10 +133,12 @@ const config = {
       }, {
         test: /\.pug$/,
         exclude: globals.execludeNoneTextExtensions,
-        loader: require.resolve('pug-loader'),
-        options: {
-          pretty: false,
-        }
+        use: [{
+          loader: require.resolve('pug-loader'),
+          query: {
+            pretty: true,
+          }
+        }]
       }, {
         test: /\.css$/,
         use: [
