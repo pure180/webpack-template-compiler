@@ -100,6 +100,10 @@ const config = {
       enforce: 'pre',
       include: paths.appEntry,
     }, {
+      test: /\.data\.json$/,
+      loader: 'json-loader',
+      include: paths.appPugData,
+    }, {
       oneOf: [{
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: require.resolve('url-loader'),
