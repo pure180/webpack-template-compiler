@@ -1,9 +1,12 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
 'use strict';
 
-const Table             = require('cli-table');
-const chalk             = require('chalk');
+const Table = require('cli-table');
+const chalk = require('chalk');
 
-const formatMessages    = require('webpack-format-messages');
+const formatMessages = require('webpack-format-messages');
 
 function createLogTable(data) {
   return [
@@ -45,4 +48,4 @@ module.exports = (stats) => {
     warnings,
     infos: stats => createInfos(stats.toJson({}, true))
   };
-}
+};

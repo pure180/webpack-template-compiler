@@ -1,10 +1,13 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
 'use strict';
 
-const webpack           = require('webpack');
-const chalk             = require('chalk');
-const clearConsole      = require('react-dev-utils/clearConsole');
+const webpack = require('webpack');
+const chalk = require('chalk');
+const clearConsole = require('react-dev-utils/clearConsole');
 
-const createMessage     = require('./messages');
+const createMessage = require('./messages');
 
 function printLogs(stats) {
   const messages = createMessage(stats);

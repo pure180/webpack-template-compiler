@@ -1,3 +1,6 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
 'use strict';
 
 const fs = require('fs');
@@ -6,12 +9,12 @@ const paths = require('./paths');
 
 delete require.cache[require.resolve('./paths')];
 
-const argv              = process.argv;
-const production        = argv.indexOf('--prod') > -1;
-const start             = argv.indexOf('--serve') > -1;
+const argv = process.argv;
+const production = argv.indexOf('--prod') > -1;
+const start = argv.indexOf('--serve') > -1;
 
-process.env.BABEL_ENV   = production ? 'production' : 'development';
-process.env.NODE_ENV    = production ? 'production': 'development';
+process.env.BABEL_ENV = production ? 'production' : 'development';
+process.env.NODE_ENV = production ? 'production': 'development';
 
 const NODE_ENV = process.env.NODE_ENV;
 
